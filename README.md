@@ -44,7 +44,7 @@ When you find it find the folder named "csgo" and the in that the folder named "
 In the "cfg" folder paste the cfg file you coped earlier.
 
 # Notes
-Open the presence application and then open CS as opening CS first will cause some issues with discord and displaying your status.
+Open CSGO first and then the presence app as opening the presence app first will cause some issues with discord and displaying your status.
 
 If you open the presence application and you run into this error:
 "Unhandled Exception: System.Net.HttpListenerException: Access is denied"
