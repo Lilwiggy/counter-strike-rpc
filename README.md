@@ -1,7 +1,7 @@
 # CS:GO Rich Presence
 This is the testing branch. Things may or may not be stable. Use at your own discretion.
 
-Look at <a href="#Notes">notes</a> before running the presence application.
+Look at <a href="#notes">notes</a> before running the presence application.
 
 # Installation
 
