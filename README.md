@@ -1,9 +1,9 @@
-#CS:GO Rich Presence
+# CS:GO Rich Presence
 This is the testing branch. Things may or may not be stable. Use at your own discretion.
 
 Look at <a href="#Notes">notes</a> before running the presence application.
 
-#Installation
+# Installation
 
 #Installer
 Head on over to the <a href="/releases">releases</a> and download the latest release.
@@ -36,14 +36,14 @@ Step 7 (optional):
 Right click "Counter-Strike Presence.exe" and hover over "Send to" and select desktop to make a shortcut for the presence.
 You can also move this folder to your desktop to make it easier to open.
 
-#Manual
+# Manual install
 
 Open the folder named "Files" and copy the file named "gamestate_integration_discordpresence.cfg".
 Find the directory where CSGO is installed (normally it's C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive)
 When you find it find the folder named "csgo" and the in that the folder named "cfg".
 In the "cfg" folder paste the cfg file you coped earlier.
 
-#Notes
+# Notes
 Open the presence application and then open CS as opening CS first will cause some issues with discord and displaying your status.
 
 If you open the presence application and you run into this error:
