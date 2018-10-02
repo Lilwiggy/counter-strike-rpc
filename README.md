@@ -1,11 +1,11 @@
 # CS:GO Rich Presence
-This is the testing branch. Things may or may not be stable. Use at your own discretion.
+This is still in a testing phase. Everything should be fine but be careful.
 
 Look at <a href="#notes">notes</a> before running the presence application.
 
 # Installation
 
-#Installer
+# Installer
 Head on over to the <a href="/releases">releases</a> and download the latest release.
 The installtion process is as follows:
 
