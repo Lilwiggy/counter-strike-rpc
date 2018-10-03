@@ -1,6 +1,4 @@
 # CS:GO Rich Presence
-This is still in a testing phase. Everything should be fine but be careful.
-
 Look at <a href="#notes">notes</a> before running the presence application.
 
 # Installation
