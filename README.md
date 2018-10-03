@@ -4,7 +4,7 @@ Look at <a href="#notes">notes</a> before running the presence application.
 # Installation
 
 # Installer
-Head on over to the <a href="/releases">releases</a> and download the latest release.
+Head on over to the <a href="https://github.com/Lilwiggy/counter-strike-rpc/releases">releases</a> and download the latest release.
 The installtion process is as follows:
 
 Step 1:
