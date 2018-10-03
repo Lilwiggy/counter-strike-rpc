@@ -101,7 +101,7 @@ namespace Counter_Strike_Presence
                 }
                 switch (json.map.name.ToString())
                 {
-                    case "de_cble":
+                    case "de_cbble":
                         Map = "Cobblestone";
                         break;
                     case "de_stmarc":
