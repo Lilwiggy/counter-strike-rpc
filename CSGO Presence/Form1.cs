@@ -111,15 +111,9 @@ namespace CSGO_Presence
 
                 Process[] proc = Process.GetProcessesByName("csgo");
                 if (proc.Length > 0)
-                {
                     Running = true;
-                    MessageBox.Show("Running set to true");
-                }
                 else
-                {
                     Running = false;
-                    MessageBox.Show("Running set to false");
-                }
             }
         }
 
@@ -181,7 +175,6 @@ namespace CSGO_Presence
 
         public static void UpdatePresence(dynamic json)
         {
-            MessageBox.Show(json.ToString());
 
             RichPresence presence = new RichPresence();
 
