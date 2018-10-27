@@ -93,11 +93,6 @@ namespace CSGO_Presence
             Hide();
             while (Running)
             {
-                Process[] proc = Process.GetProcessesByName("csgo");
-                if (proc.Length > 0)
-                    Running = true;
-                else
-                    Running = false;
                 HttpListener listener = new HttpListener();
                 listener.Prefixes.Add("http://127.0.0.1:2348/");
                 listener.Start();
@@ -113,6 +108,18 @@ namespace CSGO_Presence
                 output.Write(buffer, 0, buffer.Length);
                 output.Close();
                 listener.Stop();
+
+                Process[] proc = Process.GetProcessesByName("csgo");
+                if (proc.Length > 0)
+                {
+                    Running = true;
+                    MessageBox.Show("Running set to true");
+                }
+                else
+                {
+                    Running = false;
+                    MessageBox.Show("Running set to false");
+                }
             }
         }
 
@@ -174,6 +181,8 @@ namespace CSGO_Presence
 
         public static void UpdatePresence(dynamic json)
         {
+            MessageBox.Show(json.ToString());
+
             RichPresence presence = new RichPresence();
 
             if (json.player.activity == "menu")
