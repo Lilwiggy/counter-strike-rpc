@@ -8,31 +8,17 @@ Head on over to the <a href="https://github.com/Lilwiggy/counter-strike-rpc/rele
 The installtion process is as follows:
 
 Step 1:
-Locate your Steam directory. For me it's in C:\Program Files (x86)\Steam
-Really what I'm looking for is the directory with the steamapps folder in it (where your games are installed from steam)
+Hit install. (Mind blowing I know) It will try and automatically find your Steam directory. Assuming it does, you're done.
 
-Step 2:
-Unzip the release.
+If it doesn't find your Steam directory, it will ask you for your steam directory.
+Locate your steam directory from the browser window and hit "Ok".
 
-Step 3:
-Open "Installer.exe".
+# Running
 
-Step 4:
-Hit the button that says "Locate directory"
-This will pull up a folder browser window. Locate the directory you found in step 1.
-When you have found the Steam directory, hit the button that says "ok" in the botom right.
+In order for the presence to work, hit the button that says "Launch CS:GO".
 
-Step 5:
-After it says it has installed you can close the Installer.
-Find the folder named "Files" and open that and then go to the folder named "Presence"
-
-Step 6:
-Open the "Counter-Strike Presence.exe" and be on your way and glhf <3
-
-Step 7 (optional):
-
-Right click "Counter-Strike Presence.exe" and hover over "Send to" and select desktop to make a shortcut for the presence.
-You can also move this folder to your desktop to make it easier to open.
+This will minimize the application to your system tray (the ^ icon on your taskbar on the far right side).
+To fully close it right click the counter strike icon and hit "Quit".
 
 # Manual install
 
@@ -42,8 +28,6 @@ When you find it find the folder named "csgo" and the in that the folder named "
 In the "cfg" folder paste the cfg file you coped earlier.
 
 # Notes
-Open CSGO first and then the presence app as opening the presence app first will cause some issues with discord and displaying your status.
-
 If you open the presence application and you run into this error:
 "Unhandled Exception: System.Net.HttpListenerException: Access is denied"
-just right click the presence application and run it as administrator.
+just right click the application and run it as administrator.

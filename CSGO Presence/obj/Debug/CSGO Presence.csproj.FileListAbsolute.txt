@@ -1,0 +1,13 @@
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\CSGO Presence.exe.config
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\CSGO Presence.exe
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\CSGO Presence.pdb
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO Presence.csprojResolveAssemblyReference.cache
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO_Presence.Form1.resources
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO_Presence.Properties.Resources.resources
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO Presence.csproj.GenerateResource.Cache
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO Presence.csproj.CoreCompileInputs.cache
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO Presence.exe
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO Presence.pdb
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\Newtonsoft.Json.dll
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\Newtonsoft.Json.xml
+C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\DiscordRPC.dll
