@@ -6,13 +6,15 @@ using DiscordRPC;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace CSGO_Presence
 {
     public partial class Form1 : Form
     {
+        static double v = 2.2;
         static DateTime? Start = null;
-        static bool Running = false;
         static bool WorkShop;
         static string Steam_ID;
         static string Map;
@@ -86,15 +88,19 @@ namespace CSGO_Presence
             csgo.StartInfo.FileName = "CMD.exe";
             csgo.StartInfo.Arguments = "/C start steam://rungameid/730";
             csgo.Start();
+            Hide();
+
+            RunListener();
+
+        }
+
+        private void RunListener()
+        {
             if (Start == null)
                 Start = DateTime.UtcNow;
-
-            Running = true;
-            Hide();
-            while (Running)
-            {
-                HttpListener listener = new HttpListener();
-                listener.Prefixes.Add("http://127.0.0.1:2348/");
+            HttpListener listener = new HttpListener();
+            listener.Prefixes.Add("http://127.0.0.1:2348/");
+            Task.Run(() => {
                 listener.Start();
                 HttpListenerContext context = listener.GetContext();
                 HttpListenerRequest request = context.Request;
@@ -108,17 +114,13 @@ namespace CSGO_Presence
                 output.Write(buffer, 0, buffer.Length);
                 output.Close();
                 listener.Stop();
-
-                Process[] proc = Process.GetProcessesByName("csgo");
-                if (proc.Length > 0)
-                    Running = true;
-                else
-                    Running = false;
-            }
+                RunListener();
+            });
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
+            HttpClient http = new HttpClient();
             if (!HttpListener.IsSupported)
             {
                 MessageBox.Show("Windows XP SP2 or Server 2003 is required to use the HttpListener class.");
@@ -127,6 +129,17 @@ namespace CSGO_Presence
 
             client = new DiscordRpcClient("494943194165805082", true, 0);
             client.Initialize();
+            
+            var hi = await http.GetAsync("https://raw.githubusercontent.com/Lilwiggy/counter-strike-rpc/master/version.json");
+            string s = await hi.Content.ReadAsStringAsync();
+            dynamic JSON = JObject.Parse(s);
+
+            if (JSON.v != v)
+            {
+                MessageBox.Show("You have an outdated version! I'll open up your favorite browser with a link to the latest version for you to download :)");
+                Process.Start($"https://github.com/Lilwiggy/counter-strike-rpc/releases/tag/V{JSON.v}");
+            }
+            RunListener();
 
         }
 
