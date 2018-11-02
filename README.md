@@ -18,6 +18,8 @@ In order for the presence to work, hit the button that says "Launch CS:GO".
 This will minimize the application to your system tray (the ^ icon on your taskbar on the far right side).
 To fully close it right click the counter strike icon and hit "Quit".
 
+Alternatively you can just run CS:GO and it will update your presence without having to hit "Launch CS:GO"
+
 # Notes
 If you open the presence application and you run into this error:
 "Unhandled Exception: System.Net.HttpListenerException: Access is denied"
