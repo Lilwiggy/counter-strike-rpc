@@ -13,12 +13,13 @@ Locate your steam directory from the browser window and hit "Ok".
 
 # Running
 
-In order for the presence to work, hit the button that says "Launch CS:GO".
-
+Option 1:
+Hit the button that says "Launch CS:GO"
 This will minimize the application to your system tray (the ^ icon on your taskbar on the far right side).
 To fully close it right click the counter strike icon and hit "Quit".
 
-Alternatively you can just run CS:GO and it will update your presence without having to hit "Launch CS:GO"
+Option 2:
+You can just run CS:GO with the presence application open and it will automatically update your presence
 
 # Notes
 If you open the presence application and you run into this error:
