@@ -1,5 +1,14 @@
 # CS:GO Rich Presence
 Look at <a href="#notes">notes</a> before running the presence application.
+<br>
+<a href ="#installer">Install</s>
+
+# Examples
+<img src = "https://komaru-naegi.is-my-waifu.com/rCpwd8v.png">
+<img src = "https://komaru-naegi.is-my-waifu.com/vQYa3cq.png">
+<img src = "https://komaru-naegi.is-my-waifu.com/R73Kr93.png">
+
+
 
 # Installer
 Head on over to the <a href="https://github.com/Lilwiggy/counter-strike-rpc/releases">releases</a> and download the latest release.
