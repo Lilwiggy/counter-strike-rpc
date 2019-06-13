@@ -50,12 +50,11 @@
             // 
             // Info
             // 
-            this.Info.AutoSize = true;
             this.Info.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Info.ForeColor = System.Drawing.Color.White;
-            this.Info.Location = new System.Drawing.Point(38, 76);
+            this.Info.Location = new System.Drawing.Point(62, 70);
             this.Info.Name = "Info";
-            this.Info.Size = new System.Drawing.Size(498, 225);
+            this.Info.Size = new System.Drawing.Size(498, 267);
             this.Info.TabIndex = 1;
             this.Info.Text = resources.GetString("Info.Text");
             // 

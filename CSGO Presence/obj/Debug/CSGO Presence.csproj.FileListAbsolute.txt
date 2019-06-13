@@ -11,3 +11,16 @@ C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\obj\Debug\CSGO Presence
 C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\Newtonsoft.Json.dll
 C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\Newtonsoft.Json.xml
 C:\Users\John\Desktop\CSGO Presence Rework\CSGO Presence\bin\Debug\DiscordRPC.dll
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\bin\Debug\CSGO Presence.exe.config
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\bin\Debug\CSGO Presence.exe
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\bin\Debug\CSGO Presence.pdb
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO Presence.csprojAssemblyReference.cache
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO_Presence.Form1.resources
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO_Presence.Properties.Resources.resources
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO Presence.csproj.GenerateResource.cache
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO Presence.csproj.CoreCompileInputs.cache
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO Presence.csproj.CopyComplete
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO Presence.exe
+C:\Users\Alex Cheer\source\repos\nzgamer41\counter-strike-rpc\CSGO Presence\obj\Debug\CSGO Presence.pdb

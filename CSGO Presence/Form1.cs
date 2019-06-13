@@ -45,38 +45,49 @@ namespace CSGO_Presence
         // Oh yeah btw APR gay and NBK worst player
         private void InstallButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe"))
+            try
             {
-                if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe"))
                 {
-                    MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
-                }
-                else
-                {
-                    File.WriteAllText(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
-                    MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
-                }
-            }
-            else
-            {
-                MessageBox.Show("So uh, I tried locating the normal steam directory and it doesn't exist. Major oof. So I'm gonna let you direct me to where it exists :D\nNote: I am looking for the directory STEAM is in not csgo.");
-                var Browse = new FolderBrowserDialog();
-                DialogResult res = Browse.ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    if (File.Exists($@"{Browse.SelectedPath}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                    if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
                     {
                         MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
                     }
                     else
                     {
-                        File.WriteAllText($@"{Browse.SelectedPath}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
+                        File.WriteAllText(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
                         MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"Error: res returned {res} on line 25");
+                    MessageBox.Show("I couldn't find CSGO in the default steam directory, can you please tell me where your Steam library that has CSGO installed is?\nNote: I want the folder that has Steam.dll and steamapps in it, NOT CSGO's folder.");
+                    var Browse = new FolderBrowserDialog();
+                    DialogResult res = Browse.ShowDialog();
+                    if (res == DialogResult.OK)
+                    {
+                        if (File.Exists($@"{Browse.SelectedPath}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                        {
+                            MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
+                        }
+                        else
+                        {
+                            File.WriteAllText($@"{Browse.SelectedPath}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
+                            MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error: res returned {res} on line 25\nYou probably clicked cancel or the X in the corner of the file browser window.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is DirectoryNotFoundException)
+                {
+                    MessageBox.Show("You've picked the wrong directory. Please make sure you're using the folder that has Steam.dll and steamapps in it, and not the CSGO folder.\nLet's have another go at that.");
+                    InstallButton_Click(sender, e);
                 }
             }
         }
@@ -319,5 +330,5 @@ namespace CSGO_Presence
                 client.SetPresence(presence);
             }
         }
-        }
+    }
 }
