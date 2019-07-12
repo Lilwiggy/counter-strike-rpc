@@ -8,12 +8,13 @@ using Newtonsoft.Json.Linq;
 using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace CSGO_Presence
 {
     public partial class Form1 : Form
     {
-        static double v = 2.2;
+        static double v = 3.0;
         static DateTime? Start = null;
         static bool WorkShop;
         static string Steam_ID;
@@ -45,38 +46,57 @@ namespace CSGO_Presence
         // Oh yeah btw APR gay and NBK worst player
         private void InstallButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe"))
+            object steamReg = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Valve\Steam", "InstallPath", new object());
+            if (File.Exists($@"{steamReg}\steamapps\common\Counter-Strike Global Offensive\csgo.exe"))
             {
-                if (File.Exists(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                if (File.Exists($@"{steamReg}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
                 {
                     MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
                 }
                 else
                 {
-                    File.WriteAllText(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
+                    File.WriteAllText($@"{steamReg}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
                     MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
                 }
             }
             else
             {
-                MessageBox.Show("So uh, I tried locating the normal steam directory and it doesn't exist. Major oof. So I'm gonna let you direct me to where it exists :D\nNote: I am looking for the directory STEAM is in not csgo.");
-                var Browse = new FolderBrowserDialog();
-                DialogResult res = Browse.ShowDialog();
-                if (res == DialogResult.OK)
+                DriveInfo[] drives = DriveInfo.GetDrives();
+                int i = 0;
+                foreach (DriveInfo drive in drives)
                 {
-                    if (File.Exists($@"{Browse.SelectedPath}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                    if (File.Exists($@"{drive.Name}\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe"))
                     {
-                        MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
+                        if (File.Exists($@"{drive.Name}\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                        {
+                            MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
+                        }
+                        else
+                        {
+                            File.WriteAllText($@"{drive.Name}\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
+                            MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
+                        }
                     }
-                    else
+                    else if (File.Exists($@"{drive.Name}\SteamLibrary\steamapps\common\Counter-Strike Global Offensive"))
                     {
-                        File.WriteAllText($@"{Browse.SelectedPath}\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
-                        MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
+
+                        if (File.Exists($@"{drive.Name}\SteamLibrary\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg"))
+                        {
+                            MessageBox.Show("Nice! You have TWO versions installed now! But that'd be stupid so I did nothing.");
+                        }
+                        else
+                        {
+                            File.WriteAllText($@"{drive.Name}\SteamLibrary\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_discordpresence.cfg", cfgText);
+                            MessageBox.Show("Installed! I hope you and enjoy! glhf <3");
+                        }
                     }
-                }
-                else
-                {
-                    MessageBox.Show($"Error: res returned {res} on line 25");
+                    i++;
+                    if (i >= drives.Length)
+                    {
+                        MessageBox.Show("I tried to find a standard install path for CS:GO but couldn't find one :( Sorry about that. I will open your favorite browser with install instructions on how to install it manually :) glhf <3");
+                        Process.Start($"https://github.com/Lilwiggy/counter-strike-rpc/blob/master/README.md#manual-install");
+                    }
+                      
                 }
             }
         }
@@ -220,6 +240,9 @@ namespace CSGO_Presence
                     case "scrimcomp2v2":
                         Mode = "Wingman";
                         break;
+                    case "survival":
+                        Mode = "Danger Zone";
+                        break;
                     default:
                         Mode = char.ToUpper(json.map.mode.ToString().ToCharArray()[0]) + json.map.mode.ToString().Substring(1);
                         break;
@@ -263,9 +286,17 @@ namespace CSGO_Presence
                 {
                     if (json.player.steamid == Steam_ID)
                     {
-                        string s = json.player.team.ToString() == "T"
-                            ? $"Score: {json.map.team_t.score}:{json.map.team_ct.score}"
-                            : $"Score: {json.map.team_ct.score}:{json.map.team_t.score}";
+                        string s = "";
+                        if (Mode == "Deathmatch" || Mode == "Arms Race")
+                        {
+                            s = $"Score: {json.player.match_stats.score}";
+                        }
+                        else
+                        {
+                            s = json.player.team.ToString() == "T"
+                               ? $"Score: {json.map.team_t.score}:{json.map.team_ct.score}"
+                               : $"Score: {json.map.team_ct.score}:{json.map.team_t.score}";
+                        }
                         presence.State = $"K: {json.player.match_stats.kills} / A: {json.player.match_stats.assists} / D: {json.player.match_stats.deaths}. {s}";
                     }
                     else
@@ -319,5 +350,5 @@ namespace CSGO_Presence
                 client.SetPresence(presence);
             }
         }
-        }
+    }
 }
