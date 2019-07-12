@@ -34,3 +34,9 @@ You can just run CS:GO with the presence application open and it will automatica
 If you open the presence application and you run into this error:
 "Unhandled Exception: System.Net.HttpListenerException: Access is denied"
 just right click the application and run it as administrator.
+
+# Manual install
+
+First and foremost, locate the install directory for csgo. You can find that out <a href="https://imgur.com/a/ZggOpjm">here</a>
+Download <a href="https://github.com/Lilwiggy/counter-strike-rpc/blob/master/gamestate_integration_discordpresence.cfg">file</a>.
+Now navigate to your install directory for csgo (step 1). And open the folder titled "cfg". And just drop the file in there. And you're done :). You can hit "Play now" amd enjoy the game glhf <3
