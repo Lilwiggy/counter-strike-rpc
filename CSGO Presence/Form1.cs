@@ -14,7 +14,7 @@ namespace CSGO_Presence
 {
     public partial class Form1 : Form
     {
-        static double v = 3.0;
+        static double v = 3;
         static DateTime? Start = null;
         static bool WorkShop;
         static string Steam_ID;
