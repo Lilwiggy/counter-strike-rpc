@@ -1,51 +1,42 @@
 # CS:GO Rich Presence
-This is still in a testing phase. Everything should be fine but be careful.
-
 Look at <a href="#notes">notes</a> before running the presence application.
+<br>
+<a href ="#installer">Install</s>
 
-# Installation
+# Examples
+<img src = "https://komaru-naegi.is-my-waifu.com/rCpwd8v.png">
+<img src = "https://komaru-naegi.is-my-waifu.com/vQYa3cq.png">
+<img src = "https://komaru-naegi.is-my-waifu.com/R73Kr93.png">
+
+
 
 # Installer
-Head on over to the <a href="/releases">releases</a> and download the latest release.
+Head on over to the <a href="https://github.com/Lilwiggy/counter-strike-rpc/releases">releases</a> and download the latest release.
 The installtion process is as follows:
 
 Step 1:
-Locate your Steam directory. For me it's in C:\Program Files (x86)\Steam
-Really what I'm looking for is the directory with the steamapps folder in it (where your games are installed from steam)
+Hit install. (Mind blowing I know) It will try and automatically find your Steam directory. Assuming it does, you're done.
 
-Step 2:
-Unzip the release.
+If it doesn't find your Steam directory, it will ask you for your steam directory.
+Locate your steam directory from the browser window and hit "Ok".
 
-Step 3:
-Open "Installer.exe".
+# Running
 
-Step 4:
-Hit the button that says "Locate directory"
-This will pull up a folder browser window. Locate the directory you found in step 1.
-When you have found the Steam directory, hit the button that says "ok" in the botom right.
+Option 1:
+Hit the button that says "Launch CS:GO"
+This will minimize the application to your system tray (the ^ icon on your taskbar on the far right side).
+To fully close it right click the counter strike icon and hit "Quit".
 
-Step 5:
-After it says it has installed you can close the Installer.
-Find the folder named "Files" and open that and then go to the folder named "Presence"
+Option 2:
+You can just run CS:GO with the presence application open and it will automatically update your presence
 
-Step 6:
-Open the "Counter-Strike Presence.exe" and be on your way and glhf <3
-
-Step 7 (optional):
-
-Right click "Counter-Strike Presence.exe" and hover over "Send to" and select desktop to make a shortcut for the presence.
-You can also move this folder to your desktop to make it easier to open.
+# Notes
+If you open the presence application and you run into this error:
+"Unhandled Exception: System.Net.HttpListenerException: Access is denied"
+just right click the application and run it as administrator.
 
 # Manual install
 
-Open the folder named "Files" and copy the file named "gamestate_integration_discordpresence.cfg".
-Find the directory where CSGO is installed (normally it's C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive)
-When you find it find the folder named "csgo" and the in that the folder named "cfg".
-In the "cfg" folder paste the cfg file you coped earlier.
-
-# Notes
-Open CSGO first and then the presence app as opening the presence app first will cause some issues with discord and displaying your status.
-
-If you open the presence application and you run into this error:
-"Unhandled Exception: System.Net.HttpListenerException: Access is denied"
-just right click the presence application and run it as administrator.
+First and foremost, locate the install directory for csgo. You can find that out <a href="https://imgur.com/a/ZggOpjm">here</a>
+Download <a href="https://github.com/Lilwiggy/counter-strike-rpc/blob/master/gamestate_integration_discordpresence.cfg">file</a>.
+Now navigate to your install directory for csgo (step 1). And open the folder titled "cfg". And just drop the file in there. And you're done :). You can hit "Play now" amd enjoy the game glhf <3
