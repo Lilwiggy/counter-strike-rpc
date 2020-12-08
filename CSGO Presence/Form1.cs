@@ -9,6 +9,7 @@ using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using CSGO_Presence.types;
 
 namespace CSGO_Presence
 {
@@ -125,8 +126,9 @@ namespace CSGO_Presence
                 HttpListenerContext context = listener.GetContext();
                 HttpListenerRequest request = context.Request;
                 HttpListenerResponse response = context.Response;
-                dynamic JSON = JObject.Parse(GetRequestData(request));
-                UpdatePresence(JSON);
+                JObject JSON = JObject.Parse(GetRequestData(request));
+                Response res = JSON.ToObject<Response>();
+                UpdatePresence(res);
                 string responseString = "";
                 byte[] buffer = Encoding.UTF8.GetBytes(responseString);
                 response.ContentLength64 = buffer.Length;
@@ -206,21 +208,20 @@ namespace CSGO_Presence
             return s;
         }
 
-        public static void UpdatePresence(dynamic json)
-        {
-
+        public static void UpdatePresence(Response json)
+        {  
             RichPresence presence = new RichPresence();
 
-            if (json.player.activity == "menu")
+            if (json.Player.Activity == "menu")
                 Mode = "In menus";
 
             if (Steam_ID == null)
-                Steam_ID = json.player.steamid;
+                Steam_ID = json.Player.SteamID;
 
 
-            if (json.map != null)
+            if (json.Map != null)
             {
-                if (Mode == "In menus" && json.map.phase.ToString() != "live")
+                if (Mode == "In menus" && json.Map.Phase != "live")
                 {
                     Now = null;
                 }
@@ -229,7 +230,7 @@ namespace CSGO_Presence
                     if (Now == null)
                         Now = DateTime.UtcNow;
                 }
-                switch (json.map.mode.ToString())
+                switch (json.Map.Mode)
                 {
                     case "gungameprogressive":
                         Mode = "Arms Race";
@@ -244,10 +245,10 @@ namespace CSGO_Presence
                         Mode = "Danger Zone";
                         break;
                     default:
-                        Mode = char.ToUpper(json.map.mode.ToString().ToCharArray()[0]) + json.map.mode.ToString().Substring(1);
+                        Mode = char.ToUpper(json.Map.Mode.ToCharArray()[0]) + json.Map.Mode.Substring(1);
                         break;
                 }
-                switch (json.map.name.ToString())
+                switch (json.Map.Name)
                 {
                     case "de_cbble":
                         Map = "Cobblestone";
@@ -262,46 +263,46 @@ namespace CSGO_Presence
                         Map = "Nuke";
                         break;
                     default:
-                        if (json.map.name.ToString().StartsWith("workshop"))
+                        if (json.Map.Name.StartsWith("workshop"))
                         {
                             WorkShop = true;
-                            Map = json.map.name.ToString().Substring(json.map.name.ToString().Split('/')[1].Length + json.map.name.ToString().Split('/')[2].Length + 1);
+                            Map = json.Map.Name.Substring(json.Map.Name.Split('/')[1].Length + json.Map.Name.Split('/')[2].Length + 1);
                         }
                         else
                         {
                             WorkShop = false;
-                            Map = char.ToUpper(json.map.name.ToString().Substring(3).ToCharArray()[0]) + json.map.name.ToString().Substring(4);
+                            Map = char.ToUpper(json.Map.Name.Substring(3).ToCharArray()[0]) + json.Map.Name.Substring(4);
                         }
                         break;
                 }
             }
 
-            if (json.player.team != null)
+            if (json.Player.Team != null)
             {
-                if (json.player.team.ToString() == "CT")
+                if (json.Player.Team == "CT")
                     TeamName = "Counter-Terrorists";
                 else
                     TeamName = "Terrorists";
-                if (json.player.match_stats != null)
+                if (json.Player.Stats != null)
                 {
-                    if (json.player.steamid == Steam_ID)
+                    if (json.Player.SteamID == Steam_ID)
                     {
                         string s = "";
                         if (Mode == "Deathmatch" || Mode == "Arms Race")
                         {
-                            s = $"Score: {json.player.match_stats.score}";
+                            s = $"Score: {json.Player.Stats.Score}";
                         }
                         else
                         {
-                            s = json.player.team.ToString() == "T"
-                               ? $"Score: {json.map.team_t.score}:{json.map.team_ct.score}"
-                               : $"Score: {json.map.team_ct.score}:{json.map.team_t.score}";
+                            s = json.Player.Team == "T"
+                               ? $"Score: {json.Map.TeamT.Score}:{json.Map.TeamCT.Score}"
+                               : $"Score: {json.Map.TeamCT.Score}:{json.Map.TeamT.Score}";
                         }
-                        presence.State = $"K: {json.player.match_stats.kills} / A: {json.player.match_stats.assists} / D: {json.player.match_stats.deaths}. {s}";
+                        presence.State = $"K: {json.Player.Stats.Kills} / A: {json.Player.Stats.Assists} / D: {json.Player.Stats.Deaths}. {s}";
                     }
                     else
                     {
-                        presence.State = $"Spectating. Score: T: {json.map.team_t.score} / CT: {json.map.team_ct.score}";
+                        presence.State = $"Spectating. Score: T: {json.Map.TeamT.Score} / CT: {json.Map.TeamCT.Score}";
                     }
                 }
                 presence.Details = $"Playing {Mode}";
@@ -319,7 +320,7 @@ namespace CSGO_Presence
                     {
                         LargeImageKey = Map.ToLower().Replace(' ', '_'),
                         LargeImageText = Map,
-                        SmallImageKey = json.player.team.ToString().ToLower(),
+                        SmallImageKey = json.Player.Team.ToLower(),
                         SmallImageText = TeamName
                     };
                 }
@@ -329,7 +330,7 @@ namespace CSGO_Presence
                     {
                         LargeImageKey = "workshop",
                         LargeImageText = Map,
-                        SmallImageKey = json.player.team.ToString().ToLower(),
+                        SmallImageKey = json.Player.Team.ToLower(),
                         SmallImageText = TeamName
                     };
                 }
