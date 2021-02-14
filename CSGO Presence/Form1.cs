@@ -15,7 +15,8 @@ namespace CSGO_Presence
 {
     public partial class Form1 : Form
     {
-        static double v = 3;
+        // DONT FORGET TO CHANGE THIS ON VERSION CHANGE :)
+        static double v = 3.1;
         static DateTime? Start = null;
         static bool WorkShop;
         static string Steam_ID;
@@ -154,12 +155,13 @@ namespace CSGO_Presence
             
             var hi = await http.GetAsync("https://raw.githubusercontent.com/Lilwiggy/counter-strike-rpc/master/version.json");
             string s = await hi.Content.ReadAsStringAsync();
-            dynamic JSON = JObject.Parse(s);
+            JObject JSON = JObject.Parse(s);
+            VersionResponse VResponse = JSON.ToObject<VersionResponse>();
 
-            if (JSON.v != v)
+            if (VResponse.v != v)
             {
                 MessageBox.Show("You have an outdated version! I'll open up your favorite browser with a link to the latest version for you to download :)");
-                Process.Start($"https://github.com/Lilwiggy/counter-strike-rpc/releases/tag/V{JSON.v}");
+                Process.Start($"https://github.com/Lilwiggy/counter-strike-rpc/releases/tag/{VResponse.v}");
             }
             RunListener();
 
